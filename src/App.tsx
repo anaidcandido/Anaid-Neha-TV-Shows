@@ -1,7 +1,17 @@
-import { greet } from "./utils/greet";
+import EpisodesList from "./components/EpisodesList";
+import AppFooter from "./components/AppFooter";
+import AppHeader from "./components/AppHeader";
+import SearchBar from "./components/SearchBar";
 
 function App(): JSX.Element {
-  return <h1>{greet("World")}</h1>;
+  return (
+    <>
+      <AppHeader />
+      <SearchBar />
+      <EpisodesList />
+      <AppFooter />
+    </>
+  );
 }
 
 export default App;
