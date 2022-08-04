@@ -21,29 +21,34 @@ interface IShorterEpisode {
 
 
 function App(): JSX.Element {
-  const episodesList = episodes.map(StructureEpisode)
   const [searchItem, setSearchItem] = useState('')
+  function isMatchingSearch(oneEpisode: IShorterEpisode): boolean{
+    if(oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase()) ||
+     oneEpisode.summary.toLowerCase().includes(searchItem.toLowerCase())){
+      return true 
+    } else {
+      return false 
+    }
+  }
+  const filteredEpisodes = episodes.filter(ep => isMatchingSearch(ep))
+
   return (
     <>
       <AppHeader />
-      {episodesList}
       <input
         type="text"
         placeholder="search episode here!"
+        value={searchItem}
         onChange={(event) => setSearchItem(event.target.value)}
       />
-      {episodesList.filter(findEpisodes(episodes, searchItem))}
+      <h3>There are {filteredEpisodes.length} episodes matching the search</h3>
+      {filteredEpisodes.map(StructureEpisode)}
       <AppFooter />
     </>
   );
 }
 
-function findEpisodes(oneEpisode: IShorterEpisode, searchItem: string): boolean{
-  if(oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase())){
-    return true 
-  } else {
-    return false 
-  }
-}
+
+
 
 export default App;
