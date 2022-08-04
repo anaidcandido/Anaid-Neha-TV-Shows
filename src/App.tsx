@@ -1,8 +1,8 @@
 //import EpisodesList from "./components/EpisodesList";
-import episodes from './episodes.json'
+import episodes from "./episodes.json";
 import AppHeader from "./components/AppHeader";
 import StructureEpisode from "./components/StructureEpisode";
-import { useState } from 'react'
+import { useState } from "react";
 import AppFooter from "./components/AppFooter";
 
 interface IShorterEpisode {
@@ -19,18 +19,19 @@ interface IShorterEpisode {
   summary: string;
 }
 
-
 function App(): JSX.Element {
-  const [searchItem, setSearchItem] = useState('')
-  function isMatchingSearch(oneEpisode: IShorterEpisode): boolean{
-    if(oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase()) ||
-     oneEpisode.summary.toLowerCase().includes(searchItem.toLowerCase())){
-      return true 
+  const [searchItem, setSearchItem] = useState("");
+  function isMatchingSearch(oneEpisode: IShorterEpisode): boolean {
+    if (
+      oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase()) ||
+      oneEpisode.summary.toLowerCase().includes(searchItem.toLowerCase())
+    ) {
+      return true;
     } else {
-      return false 
+      return false;
     }
   }
-  const filteredEpisodes = episodes.filter(ep => isMatchingSearch(ep))
+  const filteredEpisodes = episodes.filter((ep) => isMatchingSearch(ep));
 
   return (
     <>
@@ -47,8 +48,5 @@ function App(): JSX.Element {
     </>
   );
 }
-
-
-
 
 export default App;
