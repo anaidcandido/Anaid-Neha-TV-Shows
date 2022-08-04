@@ -1,7 +1,9 @@
 import { useState } from "react";
-//import episodes from "../episodes.json"
+import episodes from "../episodes.json"
+import isSearchCharacterInEpisode from '../utils/filteredSearch';
+import StructureEpisode from "./StructureEpisode"; 
 
-/*interface IShorterEpisode {
+/* interface IShorterEpisode {
     id: number;
     name: string;
     season: number;
@@ -14,10 +16,14 @@ import { useState } from "react";
     };
     summary: string;
   }
-  */
+*/  
 
 export default function SearchBar(): JSX.Element {
+  
   const [searchEpisode, setSearchEpisode] = useState("");
+
+  const filteredEpisodesArray = episodes.filter(isSearchCharacterInEpisode(searchEpisode))
+
   return (
     <div>
       <input
@@ -25,14 +31,10 @@ export default function SearchBar(): JSX.Element {
         placeholder="search episode here!"
         onChange={(event) => setSearchEpisode(event.target.value)}
       />
-      {console.log("search value is", searchEpisode)}
-      {console.log("setsearch value is", setSearchEpisode)}
+      <div className='filteredEpisodesArray'>
+      {filteredEpisodesArray.map(StructureEpisode)}
+      </div>
     </div>
   );
 }
 
-/* function findOneEpisode(oneEpisode: IShorterEpisode): boolean {
-    return (oneEpisode.name.toLowerCase().includes(searchEpisode.toLowerCase()))
-    }
-const filteredEpisodes = episodes.filter(findOneEpisode)
-*/
