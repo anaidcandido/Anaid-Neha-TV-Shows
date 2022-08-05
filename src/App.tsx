@@ -5,7 +5,7 @@ import StructureEpisode from "./components/StructureEpisode";
 import { useState } from "react";
 import AppFooter from "./components/AppFooter";
 
-interface IShorterEpisode {
+export interface IShorterEpisode {
   id: number;
   name: string;
   season: number;
