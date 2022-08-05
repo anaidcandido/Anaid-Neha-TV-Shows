@@ -29,7 +29,7 @@ export default function StructureEpisode(
         <div>
           <img alt="episode preview" src={episodeData.image.medium} />
         </div>
-        <p> Summary: {episodeData.summary}</p>
+        <p> Summary: {episodeData.summary.replaceAll('<p>','').replaceAll('</p>','')}</p>
       </div>
     </>
   );
