@@ -1,5 +1,5 @@
 import simpson from "./simpson.json";
-import episodes from "./episodes.json";
+//import episodes from "./episodes.json";
 import AppHeader from "./components/AppHeader";
 import StructureEpisode from "./components/StructureEpisode";
 import { useState } from "react";
@@ -19,8 +19,7 @@ export interface IShorterEpisode {
   rating: {
     average: number | any;
   };
-  image:
-    | {
+  image: {
         original: string;
         medium: string;
       }
