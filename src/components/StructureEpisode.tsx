@@ -7,11 +7,13 @@ interface IShorterEpisode {
   number: number;
   airdate: string;
   airtime: string;
-  image: {
-    original: string;
-    medium: string;
-  };
-  summary: string;
+  image:
+    | {
+        original: string;
+        medium: string;
+      }
+    | any;
+  summary: string | any;
 }
 
 export default function StructureEpisode(
@@ -27,9 +29,18 @@ export default function StructureEpisode(
           </h2>
         </div>
         <div>
-          <img alt="episode preview" src={episodeData.image.medium} />
+          <img
+            alt="episode preview"
+            src={episodeData.image ? episodeData.image.medium : ""}
+          />
         </div>
-        <p> Summary: {episodeData.summary}</p>
+        <p>
+          {" "}
+          Summary:{" "}
+          {episodeData.summary
+            ? episodeData.summary.replaceAll("<p>", "").replaceAll("</p>", "")
+            : ""}
+        </p>
       </div>
     </>
   );
