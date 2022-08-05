@@ -7,18 +7,17 @@ interface IShorterEpisode {
   number: number;
   airdate: string;
   airtime: string;
-  image:
-    | {
-        original: string;
-        medium: string;
-      }
-    | any;
-  summary: string | any;
+  image: {
+    original: string;
+    medium: string;
+  } | any;
+  summary: string| any;
 }
 
 export default function StructureEpisode(
   episodeData: IShorterEpisode
 ): JSX.Element {
+
   return (
     <>
       <div key={episodeData.id}>
@@ -29,18 +28,9 @@ export default function StructureEpisode(
           </h2>
         </div>
         <div>
-          <img
-            alt="episode preview"
-            src={episodeData.image ? episodeData.image.medium : ""}
-          />
+          <img alt="episode preview" src={episodeData.image ? episodeData.image.medium: ""} />
         </div>
-        <p>
-          {" "}
-          Summary:{" "}
-          {episodeData.summary
-            ? episodeData.summary.replaceAll("<p>", "").replaceAll("</p>", "")
-            : ""}
-        </p>
+        <p> Summary: {episodeData.summary ? episodeData.summary.replaceAll("<p>", "").replaceAll("</p>", ""): ""}</p>
       </div>
     </>
   );
