@@ -1,4 +1,4 @@
-import simpson from "./simpson.json"
+import simpson from "./simpson.json";
 import episodes from "./episodes.json";
 import AppHeader from "./components/AppHeader";
 import StructureEpisode from "./components/StructureEpisode";
