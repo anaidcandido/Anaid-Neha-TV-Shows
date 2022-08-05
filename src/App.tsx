@@ -1,4 +1,4 @@
-//import EpisodesList from "./components/EpisodesList";
+import simpson from "./simpson.json"
 import episodes from "./episodes.json";
 import AppHeader from "./components/AppHeader";
 import StructureEpisode from "./components/StructureEpisode";
@@ -7,31 +7,49 @@ import AppFooter from "./components/AppFooter";
 
 export interface IShorterEpisode {
   id: number;
+  url: string;
   name: string;
   season: number;
   number: number;
+  type: string;
   airdate: string;
   airtime: string;
-  image: {
-    original: string;
-    medium: string;
+  airstamp: string;
+  runtime: number;
+  rating: {
+    average: number | any;
   };
-  summary: string;
+  image:
+    | {
+        original: string;
+        medium: string;
+      }
+    | any;
+  summary: string | any;
+  _links: {
+    self: {
+      href: string;
+    };
+  };
 }
 
 function App(): JSX.Element {
   const [searchItem, setSearchItem] = useState("");
   function isMatchingSearch(oneEpisode: IShorterEpisode): boolean {
-    if (
-      oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase()) ||
-      oneEpisode.summary.toLowerCase().includes(searchItem.toLowerCase())
-    ) {
-      return true;
-    } else {
-      return false;
+    if (oneEpisode.summary !== null) {
+      if (
+        oneEpisode.name.toLowerCase().includes(searchItem.toLowerCase()) ||
+        oneEpisode.summary.toLowerCase().includes(searchItem.toLowerCase())
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     }
+    return false;
   }
-  const filteredEpisodes = episodes.filter((ep) => isMatchingSearch(ep));
+
+  const filteredEpisodes = simpson.filter((ep) => isMatchingSearch(ep));
 
   return (
     <>
